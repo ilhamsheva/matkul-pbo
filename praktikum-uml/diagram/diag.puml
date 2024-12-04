@@ -1,0 +1,31 @@
+@startuml item
+skinparam ClassAttributeIconSize 0
+class Item {
+    - name: String
+    - stock: int
+    - pricePerItem: int
+    - totalPrice: int
+    --
+    + setDetails(name: String, stock: int, pricePerItem: int): void
+    + getDetails(): String
+    + calculateTotalPrice(): void
+    + getTotalPrice(): int
+}
+
+class Seller {
+    - items: List<Item>
+    --
+    + addItem(item: Item): void
+    + getTotalRevenue(): int
+    + displayItems(): void
+}
+
+class Main {
+    --
+    + main(args: String[]): void
+}
+
+Seller "1" o-- "0..*" Item
+Main ..> Seller : uses
+Main ..> Item : uses
+@enduml
