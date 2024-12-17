@@ -1,0 +1,50 @@
+@startuml diagram
+
+' Abstract class Kendaraan
+abstract class Kendaraan {
+    - String nama
+    - String tipe
+    - int kapasitas
+    - double hargaSewaPerHari
+    + Kendaraan(String nama, String tipe, int kapasitas, double hargaSewaPerHari)
+    # abstract double hitungHargaSewa(int jumlahHari)
+    + String getNama()
+    + String getTipe()
+    + int getKapasitas()
+    + double getHargaSewaPerHari()
+}
+
+' Class Mobil extends Kendaraan
+class Mobil {
+    + Mobil(String nama, int kapasitas, double hargaSewaPerHari)
+    + double hitungHargaSewa(int jumlahHari)
+}
+
+' Class SepedaMotor extends Kendaraan
+class SepedaMotor {
+    + SepedaMotor(String nama, int kapasitas, double hargaSewaPerHari)
+    + double hitungHargaSewa(int jumlahHari)
+}
+
+' Class Truk extends Kendaraan
+class Truk {
+    + Truk(String nama, int kapasitas, double hargaSewaPerHari)
+    + double hitungHargaSewa(int jumlahHari)
+}
+
+' Interface Sewaable
+interface Sewaable {
+    + void sewa()
+}
+
+' Menghubungkan interface dengan kelas yang mengimplementasikannya
+Mobil -|> Sewaable
+SepedaMotor -|> Sewaable
+Truk -|> Sewaable
+
+' Menunjukkan relasi inheritance
+Kendaraan <|-- Mobil
+Kendaraan <|-- SepedaMotor
+Kendaraan <|-- Truk
+
+@enduml
